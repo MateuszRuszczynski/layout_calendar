@@ -1,4 +1,3 @@
-// Zmienne konfiguracyjne
 $day-size: 100px;
 $day-border-width: 1px;
 $gap: 1px;
@@ -20,13 +19,6 @@ body {
   min-height: 100vh;
 }
 
-.calendar-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
 .calendar {
   display: flex;
   flex-wrap: wrap;
@@ -40,7 +32,7 @@ body {
     height: $day-size;
     background-color: $bg-day;
     border: $day-border-width solid black;
-    box-sizing: border-box; // Ważne: rozmiar 100px zawiera już border
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,14 +49,12 @@ body {
     }
   }
 
-  // Generowanie numerów dni za pomocą @for
   @for $i from 1 through 31 {
     &__day:nth-child(#{$i})::before {
       content: '#{$i}';
     }
   }
 
-  // Modyfikator długości miesiąca
   @for $len from 28 through 31 {
     &--month-length-#{$len} {
       .calendar__day:nth-child(n + #{$len + 1}) {
@@ -73,7 +63,6 @@ body {
     }
   }
 
-  // Modyfikatory dnia startowego (margin-left przesuwa pierwszy element)
   $days-list: (
     mon: 0,
     tue: 1,
@@ -87,7 +76,6 @@ body {
   @each $name, $offset in $days-list {
     &--start-day-#{$name} {
       .calendar__day:first-child {
-        // Obliczenie marginesu: (szerokość dnia + przerwa) * ilość pustych miejsc
         margin-left: ($day-size + $gap) * $offset;
       }
     }
