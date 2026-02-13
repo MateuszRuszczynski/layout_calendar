@@ -73,6 +73,7 @@ body {
     sun: 6,
   );
 
+
   @each $name, $offset in $days-list {
     &--start-day-#{$name} {
       .calendar__day:first-child {
